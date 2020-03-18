@@ -466,7 +466,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "Praed_Lex.l"
 #line 7 "Praed_Lex.l"
-/*init-Code*/
+  #include "Praed_Lex.tab.h"
 #line 471 "<stdout>"
 #line 472 "<stdout>"
 
@@ -748,130 +748,131 @@ case 1:
 YY_RULE_SETUP
 #line 11 "Praed_Lex.l"
 {
-  printf("KOMMA:%s ",yytext);
+  printf("scanning COMMA \n"); //-->Semantischer Wert ist steht in yytext
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 14 "Praed_Lex.l"
 {
-  printf("OPENPAR:%s ",yytext);
+  printf("scanning OPENPAR \n");
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 17 "Praed_Lex.l"
 {
-  printf("CLOSEPAR:%s ",yytext);
+  printf("scanning CLOSEPAR\n");
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 20 "Praed_Lex.l"
 {
-  printf("TOP:%s ",yytext);
+  printf("scanning TOP\n");
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 23 "Praed_Lex.l"
 {
-  printf("BOTTOM:%s ",yytext);
+  printf("scanning BOTTOM\n");
 }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 26 "Praed_Lex.l"
 {
-    printf("UND ");
+    printf("scanning AND\n");
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 29 "Praed_Lex.l"
 {
-    printf("ODER ");
+    printf("scanning OR\n");
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 32 "Praed_Lex.l"
 {
-    printf("NOT ");
+    printf("scanning NOT\n");
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 35 "Praed_Lex.l"
 {
-    printf("IMPLIZIT ");
+    printf("scanning IMPLIZIT\n");
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 38 "Praed_Lex.l"
 {
-    printf("AEQUIVALENZ ");
+    printf("scanning EQUIVALENT\n");
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 41 "Praed_Lex.l"
 {
-  printf("ALL:%s ",yytext);
+  printf("scanning ALL\n");
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 44 "Praed_Lex.l"
 {
-  printf("EX:%s ",yytext);
+  printf("scanning EX\n");
+  return EX;
 }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 47 "Praed_Lex.l"
+#line 48 "Praed_Lex.l"
 {
-  printf("VARIABLES:%s ",yytext);
+  printf("scanning VARIABLE\n");
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 50 "Praed_Lex.l"
+#line 51 "Praed_Lex.l"
 {
-  printf("FUNKSYMBOLS:%s ",yytext);
+  printf("scanning FUNCSYMBOL\n");
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 53 "Praed_Lex.l"
+#line 54 "Praed_Lex.l"
 {
-  printf("PRAEDIKATE:%s ",yytext);
+  printf("scanning PRAEDICATE\n");
 }
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 59 "Praed_Lex.l"
+#line 60 "Praed_Lex.l"
 {
  /*SKIP leerzeichen und Enter*/
- printf("\n");
+ //printf("\n");
  }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 63 "Praed_Lex.l"
+#line 64 "Praed_Lex.l"
 {
  /*SKIP leerzeichen und Enter*/
- printf("LEERZEICHEN erkannt! ");
+ //printf("LEERZEICHEN erkannt! ");
  }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 68 "Praed_Lex.l"
+#line 69 "Praed_Lex.l"
 ECHO;
 	YY_BREAK
-#line 875 "<stdout>"
+#line 876 "<stdout>"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1876,14 +1877,16 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 68 "Praed_Lex.l"
+#line 69 "Praed_Lex.l"
 
-int main( int argc, char**argv )    {
+/* int main( int argc, char**argv )    {
 ++argv, --argc;/*skip over program name*/
-if ( argc > 0 )
+/*if ( argc > 0 )
     yyin = fopen( argv[0], "r" );
 else
     yyin = stdin;
 yylex();
 }
+
+*/
 

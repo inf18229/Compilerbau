@@ -1,76 +1,79 @@
 %option noyywrap
 INTEGER  [0-9]
-VARIABLES  [n-z]
-FUNKSYMBOLS  [a-m]
-PRAEDIKATE [A-Z]
+VARIABLE  [n-z]
+FUNCSYMBOL  [a-m]
+PREDICATE [A-Z]
 %{
-/*init-Code*/
+  #include "Praed_Lex.tab.h"
 %}
 
 %%
 "," {
-  printf("KOMMA:%s ",yytext);
+  printf("scanning COMMA \n"); //-->Semantischer Wert ist steht in yytext
 }
 \( {
-  printf("OPENPAR:%s ",yytext);
+  printf("scanning OPENPAR \n");
 }
 \) {
-  printf("CLOSEPAR:%s ",yytext);
+  printf("scanning CLOSEPAR\n");
 }
 "top" {
-  printf("TOP:%s ",yytext);
+  printf("scanning TOP\n");
 }
 "bottom" {
-  printf("BOTTOM:%s ",yytext);
+  printf("scanning BOTTOM\n");
 }
 \& {
-    printf("UND ");
+    printf("scanning AND\n");
 }
 \| {
-    printf("ODER ");
+    printf("scanning OR\n");
 }
 \~ {
-    printf("NOT ");
+    printf("scanning NOT\n");
 }
 "->" {
-    printf("IMPLIZIT ");
+    printf("scanning IMPLIZIT\n");
 }
 "<->" {
-    printf("AEQUIVALENZ ");
+    printf("scanning EQUIVALENT\n");
 }
 "all" {
-  printf("ALL:%s ",yytext);
+  printf("scanning ALL\n");
 }
 "ex" {
-  printf("EX:%s ",yytext);
+  printf("scanning EX\n");
+  return EX;
 }
-{VARIABLES}{INTEGER}* {
-  printf("VARIABLES:%s ",yytext);
+{VARIABLE}{INTEGER}* {
+  printf("scanning VARIABLE\n");
 }
-{FUNKSYMBOLS}{INTEGER}* {
-  printf("FUNKSYMBOLS:%s ",yytext);
+{FUNCSYMBOL}{INTEGER}* {
+  printf("scanning FUNCSYMBOL\n");
 }
-{PRAEDIKATE}{INTEGER}* {
-  printf("PRAEDIKATE:%s ",yytext);
+{PREDICATE}{INTEGER}* {
+  printf("scanning PRAEDICATE\n");
 }
 
 
 
 \n {
  /*SKIP leerzeichen und Enter*/
- printf("\n");
+ //printf("\n");
  }
 " " {
  /*SKIP leerzeichen und Enter*/
- printf("LEERZEICHEN erkannt! ");
+ //printf("LEERZEICHEN erkannt! ");
  }
 
 %%
-int main( int argc, char**argv )    {
+/* int main( int argc, char**argv )    {
 ++argv, --argc;/*skip over program name*/
-if ( argc > 0 )
+/*if ( argc > 0 )
     yyin = fopen( argv[0], "r" );
 else
     yyin = stdin;
 yylex();
 }
+
+*/

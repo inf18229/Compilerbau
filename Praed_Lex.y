@@ -3,6 +3,7 @@
 
     extern int yyerror(char* err);
     extern int yylex(void);
+    extern FILE *yyin;
 %}
 
 %union {
@@ -10,23 +11,46 @@
 }
 %start stmtseq
 
-%precedence FUNKTIONSSYMBOLE
-%precedence PRAEDIKAT
-%precedence QUANTOR
-%precedence NOT
-%precedence AND
-%precedence OR
-%precedence IMPLIKATION
-%precedence AEQUIVALENZ
-
-
-%left ALL
-%left EX
-
 %token TOP
 %token BOTTOM
-%token OPENPAR
-%token CLOSEPAR
-%token KOMMA
 %token VARIABLE
 
+
+
+
+
+%precedence TOP
+%precedence BOTTOM
+%precedence VARIABLE
+%precedence EQUIVALENT
+%precedence IMPLIZIT
+%precedence OR
+%precedence AND
+%precedence NOT
+%left EX
+%left ALL
+//%precedence EX
+//%precedence ALL
+%precedence PRAEDICATE
+%precedence FUNCSYMBOL
+%precedence COMMA
+%precedence OPENPAR
+%precedence CLOSEPAR
+
+%%
+stmtseq: EX {printf("parser funktioniert!\n");}
+%%
+
+int yyerror(char* err)
+{
+  printf("Error: %s\n",err);
+}
+void main(int argc, char* argv[])
+{
+  ++argv, --argc;
+  if ( argc > 0 )
+      yyin = fopen( argv[0], "r" );
+  else
+    yyin = stdin;
+yyparse();
+}
