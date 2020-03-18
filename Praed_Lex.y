@@ -21,12 +21,12 @@
 
 %precedence TOP
 %precedence BOTTOM
-%precedence VARIABLE
 %precedence EQUIVALENT
 %precedence IMPLIZIT
 %precedence OR
 %precedence AND
 %precedence NOT
+%precedence VARIABLE
 %left EX
 %left ALL
 //%precedence EX

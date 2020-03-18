@@ -10,36 +10,47 @@ PREDICATE [A-Z]
 %%
 "," {
   printf("scanning COMMA \n"); //-->Semantischer Wert ist steht in yytext
+  return COMMA;
 }
 \( {
   printf("scanning OPENPAR \n");
+  return OPENPAR;
 }
 \) {
   printf("scanning CLOSEPAR\n");
+  return CLOSEPAR;
 }
 "top" {
   printf("scanning TOP\n");
+  return TOP;
 }
 "bottom" {
   printf("scanning BOTTOM\n");
+  return BOTTOM;
 }
 \& {
     printf("scanning AND\n");
+    return AND;
 }
 \| {
     printf("scanning OR\n");
+    return OR;
 }
 \~ {
     printf("scanning NOT\n");
+    return NOT;
 }
 "->" {
     printf("scanning IMPLIZIT\n");
+    return IMPLIZIT
 }
 "<->" {
     printf("scanning EQUIVALENT\n");
+    return EQUIVALENT;
 }
 "all" {
   printf("scanning ALL\n");
+  return ALL;
 }
 "ex" {
   printf("scanning EX\n");
@@ -47,12 +58,18 @@ PREDICATE [A-Z]
 }
 {VARIABLE}{INTEGER}* {
   printf("scanning VARIABLE\n");
+  yylval.val = yytext+1;
+  return INTEGER;
 }
 {FUNCSYMBOL}{INTEGER}* {
   printf("scanning FUNCSYMBOL\n");
+  yylval.val = yytext+1;
+  return FUNCSYMBOL;
 }
 {PREDICATE}{INTEGER}* {
   printf("scanning PRAEDICATE\n");
+  yylval.val = yytext+1;
+  return PREDICATE;
 }
 
 
