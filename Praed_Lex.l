@@ -42,7 +42,7 @@ PREDICATE [A-Z]
 }
 "->" {
     printf("scanning IMPLIZIT\n");
-    return IMPLIZIT
+    return IMPLIZIT;
 }
 "<->" {
     printf("scanning EQUIVALENT\n");
@@ -57,17 +57,17 @@ PREDICATE [A-Z]
   return EX;
 }
 {VARIABLE}{INTEGER}* {
-  printf("scanning VARIABLE\n");
+  printf("scanning VARIABLE %s\n",yytext);
   yylval.val = yytext+1;
-  return INTEGER;
+  return VARIABLE;
 }
 {FUNCSYMBOL}{INTEGER}* {
-  printf("scanning FUNCSYMBOL\n");
+  printf("scanning FUNCSYMBOL %s\n",yytext);
   yylval.val = yytext+1;
   return FUNCSYMBOL;
 }
 {PREDICATE}{INTEGER}* {
-  printf("scanning PRAEDICATE\n");
+  printf("scanning PRAEDICATE %s\n",yytext);
   yylval.val = yytext+1;
   return PREDICATE;
 }

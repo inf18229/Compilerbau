@@ -7,7 +7,7 @@
 %}
 
 %union {
-    char* var;
+    char* val;
 }
 %start stmtseq
 
@@ -31,14 +31,20 @@
 %left ALL
 //%precedence EX
 //%precedence ALL
-%precedence PRAEDICATE
+%precedence PREDICATE
 %precedence FUNCSYMBOL
 %precedence COMMA
 %precedence OPENPAR
 %precedence CLOSEPAR
 
 %%
+
 stmtseq: EX {printf("parser funktioniert!\n");}
+        |term {printf("reducing term to startsymbol\n");}
+term: VARIABLE{printf("reduced VARIABLE to term\n");}
+    | FUNCSYMBOL OPENPAR param CLOSEPAR {printf("reducing f(param) to term\n");}
+param: term  {printf("reducing term to param\n");}
+    | term COMMA param {printf("reducing (term,term) to param\n");}
 %%
 
 int yyerror(char* err)

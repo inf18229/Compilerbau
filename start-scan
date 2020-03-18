@@ -1,6 +1,5 @@
 #!/bin/bash
-cd /
-cd "$(dirname "$BASH_SOURCE")"
+
 bison -d Praed_Lex.y
 flex -tv Praed_Lex.l>Praed_Lex.c
 gcc -c -o Praed_Lex.o Praed_Lex.c
