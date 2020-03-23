@@ -53,13 +53,14 @@ extern int yydebug;
     OR = 263,
     AND = 264,
     NOT = 265,
-    EX = 266,
-    ALL = 267,
-    PREDICATE = 268,
-    FUNCSYMBOL = 269,
-    COMMA = 270,
-    OPENPAR = 271,
-    CLOSEPAR = 272
+    CONSTANT = 266,
+    EX = 267,
+    ALL = 268,
+    PREDICATE = 269,
+    FUNCSYMBOL = 270,
+    COMMA = 271,
+    OPENPAR = 272,
+    CLOSEPAR = 273
   };
 #endif
 
@@ -72,7 +73,7 @@ union YYSTYPE
 
     char* val;
 
-#line 76 "Praed_Lex.tab.h" /* yacc.c:1909  */
+#line 77 "Praed_Lex.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

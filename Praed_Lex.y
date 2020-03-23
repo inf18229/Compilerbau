@@ -26,6 +26,7 @@
 %precedence OR
 %precedence AND
 %precedence NOT
+%precedence CONSTANT
 %precedence VARIABLE
 %left EX
 %left ALL
@@ -39,10 +40,34 @@
 
 %%
 
-stmtseq: EX {printf("parser funktioniert!\n");}
-        |term {printf("reducing term to startsymbol\n");}
+stmtseq: formel {printf("reducing formel to startsymbol\n");}
+
+
+formel: atom {printf("reducing atom to formel\n");}
+      | NOT formel {printf("reducing NOT formel to formel\n");}
+      | OPENPAR formel CLOSEPAR {printf("reducing (formel) to formel\n");}
+      | TOP {printf("reducing top to formel\n");}
+      | BOTTOM {printf("reducing bottom to formel\n");}
+      | formel AND formel {printf("reducing formel and formel to formel\n");}
+      | formel OR formel {printf("reducing formel or formel to formel\n");}
+      | formel IMPLIZIT formel {printf("reducing formel -> formel to formel\n");}
+      | formel EQUIVALENT formel {printf("reducing formel <-> formel to formel\n");}
+      | ALL VARIABLE formel {printf("reducing all variable formel to formel\n");}
+      | EX VARIABLE formel {printf("reducing ex variable formel to formel\n");}
+
+
+
+
 term: VARIABLE{printf("reduced VARIABLE to term\n");}
+    | CONSTANT {printf("reduced CONSTANT to term\n");}
     | FUNCSYMBOL OPENPAR param CLOSEPAR {printf("reducing f(param) to term\n");}
+
+
+atom: PREDICATE OPENPAR param CLOSEPAR {printf("reducing R(param) to atom\n");}
+    | PREDICATE OPENPAR CLOSEPAR {printf("reducing R() to atom");}
+    | PREDICATE {printf("reducing R tp atom");}
+
+
 param: term  {printf("reducing term to param\n");}
     | term COMMA param {printf("reducing (term,term) to param\n");}
 %%

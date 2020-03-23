@@ -1,8 +1,9 @@
 %option noyywrap
 INTEGER  [0-9]
 VARIABLE  [n-z]
-FUNCSYMBOL  [a-m]
+FUNCSYMBOL  [a-be-m]
 PREDICATE [A-Z]
+CONSTANT [c-d]
 %{
   #include "Praed_Lex.tab.h"
 %}
@@ -61,13 +62,18 @@ PREDICATE [A-Z]
   yylval.val = yytext+1;
   return VARIABLE;
 }
+{CONSTANT}{INTEGER}* {
+  printf("scanning CONSTANT %s\n",yytext);
+  yylval.val = yytext+1;
+  return CONSTANT;
+}
 {FUNCSYMBOL}{INTEGER}* {
   printf("scanning FUNCSYMBOL %s\n",yytext);
   yylval.val = yytext+1;
   return FUNCSYMBOL;
 }
 {PREDICATE}{INTEGER}* {
-  printf("scanning PRAEDICATE %s\n",yytext);
+  printf("scanning PREDICATE %s\n",yytext);
   yylval.val = yytext+1;
   return PREDICATE;
 }
