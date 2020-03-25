@@ -72,8 +72,11 @@ union YYSTYPE
 #line 9 "Praed_Lex.y" /* yacc.c:1909  */
 
     char* val;
+    struct* term;
+    struct* param;
+    struct* formel;
 
-#line 77 "Praed_Lex.tab.h" /* yacc.c:1909  */
+#line 80 "Praed_Lex.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

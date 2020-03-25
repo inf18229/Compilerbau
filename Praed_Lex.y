@@ -1,6 +1,6 @@
 %{
     #include <stdio.h>
-
+    #include "Datatypes.h"
     extern int yyerror(char* err);
     extern int yylex(void);
     extern FILE *yyin;
@@ -8,6 +8,9 @@
 
 %union {
     char* val;
+    struct* term;
+    struct* param;
+    struct* formel;
 }
 %start stmtseq
 
@@ -68,7 +71,7 @@ atom: PREDICATE OPENPAR param CLOSEPAR {printf("reducing R(param) to atom\n");}
     | PREDICATE {printf("reducing R tp atom");}
 
 
-param: term  {printf("reducing term to param\n");}
+param: term  {printf("reducing term to param\n");} //-->Wie in der Lösung termlist
     | term COMMA param {printf("reducing (term,term) to param\n");}
 %%
 

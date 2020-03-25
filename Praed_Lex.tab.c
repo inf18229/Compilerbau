@@ -65,7 +65,7 @@
 #line 1 "Praed_Lex.y" /* yacc.c:339  */
 
     #include <stdio.h>
-
+    #include "Datatypes.h"
     extern int yyerror(char* err);
     extern int yylex(void);
     extern FILE *yyin;
@@ -132,8 +132,11 @@ union YYSTYPE
 #line 9 "Praed_Lex.y" /* yacc.c:355  */
 
     char* val;
+    struct* term;
+    struct* param;
+    struct* formel;
 
-#line 137 "Praed_Lex.tab.c" /* yacc.c:355  */
+#line 140 "Praed_Lex.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -150,7 +153,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 154 "Praed_Lex.tab.c" /* yacc.c:358  */
+#line 157 "Praed_Lex.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -392,16 +395,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  16
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   32
+#define YYLAST   49
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  19
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  6
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  18
+#define YYNRULES  21
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  34
+#define YYNSTATES  40
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -449,8 +452,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    43,    43,    46,    47,    48,    49,    50,    51,    56,
-      57,    62,    63,    64,    67,    68,    69,    72,    73
+       0,    46,    46,    49,    50,    51,    52,    53,    54,    55,
+      56,    57,    58,    59,    64,    65,    66,    69,    70,    71,
+      74,    75
 };
 #endif
 
@@ -476,10 +480,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -27
+#define YYPACT_NINF -9
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-27)))
+  (!!((Yystate) == (-9)))
 
 #define YYTABLE_NINF -1
 
@@ -490,10 +494,10 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,   -27,   -27,    -3,    -1,     0,   -11,    -3,    16,    15,
-     -27,   -27,    -3,    -3,     8,    11,   -27,    -3,   -27,   -27,
-     -27,   -27,    13,   -27,    12,     9,   -27,    15,    10,    10,
-     -27,    14,   -27,   -27
+       8,    -9,    -9,     8,    14,    30,    -4,     8,    28,    -1,
+      -9,    -9,     8,     8,    18,    31,    -9,     8,     8,     8,
+       8,    -9,    -9,    -9,    -9,    24,    -9,    26,    25,    -9,
+      -1,    -6,    23,    35,    19,    19,    -9,    27,    -9,    -9
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -501,22 +505,22 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     7,     8,     0,     0,     0,    16,     0,     0,     2,
-       4,     5,     0,     0,     0,     0,     1,     0,    10,     9,
-      11,    12,     0,    15,    17,     0,     6,     3,     0,     0,
-      14,     0,    18,    13
+       0,     6,     7,     0,     0,     0,    19,     0,     0,     2,
+       3,     4,     0,     0,     0,     0,     1,     0,     0,     0,
+       0,    13,    12,    14,    15,     0,    18,    20,     0,     5,
+      11,    10,     9,     8,     0,     0,    17,     0,    21,    16
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -27,   -27,     5,   -27,   -27,   -26
+      -9,    -9,    -3,    -9,    -9,    -8
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     8,     9,    24,    10,    25
+      -1,     8,     9,    27,    10,    28
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -524,18 +528,20 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       1,     2,    31,    32,    12,    13,    14,     3,    11,     4,
-       5,     6,    15,    20,     7,    20,    16,    18,    19,    21,
-      17,    21,    27,    22,    17,    22,    23,    30,    29,    26,
-      28,     0,    33
+      11,    18,    19,    20,    15,    17,    18,    19,    20,    21,
+      22,     1,     2,    14,    30,    31,    32,    33,     3,    12,
+       4,     5,     6,    23,    23,     7,    37,    38,    16,    24,
+      24,    19,    20,    25,    25,    13,    26,    17,    18,    19,
+      20,    34,    35,    36,    20,    39,     0,     0,     0,    29
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     4,    28,    29,     5,     5,    17,    10,     3,    12,
-      13,    14,     7,     5,    17,     5,     0,    12,    13,    11,
-       9,    11,    17,    15,     9,    15,    18,    18,    16,    18,
-      17,    -1,    18
+       3,     7,     8,     9,     7,     6,     7,     8,     9,    12,
+      13,     3,     4,    17,    17,    18,    19,    20,    10,     5,
+      12,    13,    14,     5,     5,    17,    34,    35,     0,    11,
+      11,     8,     9,    15,    15,     5,    18,     6,     7,     8,
+       9,    17,    16,    18,     9,    18,    -1,    -1,    -1,    18
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -543,23 +549,25 @@ static const yytype_int8 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,     3,     4,    10,    12,    13,    14,    17,    20,    21,
-      23,    21,     5,     5,    17,    21,     0,     9,    21,    21,
-       5,    11,    15,    18,    22,    24,    18,    21,    17,    16,
-      18,    24,    24,    18
+      23,    21,     5,     5,    17,    21,     0,     6,     7,     8,
+       9,    21,    21,     5,    11,    15,    18,    22,    24,    18,
+      21,    21,    21,    21,    17,    16,    18,    24,    24,    18
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
        0,    19,    20,    21,    21,    21,    21,    21,    21,    21,
-      21,    22,    22,    22,    23,    23,    23,    24,    24
+      21,    21,    21,    21,    22,    22,    22,    23,    23,    23,
+      24,    24
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     1,     3,     1,     2,     3,     1,     1,     3,
-       3,     1,     1,     4,     4,     3,     1,     1,     3
+       0,     2,     1,     1,     2,     3,     1,     1,     3,     3,
+       3,     3,     3,     3,     1,     1,     4,     4,     3,     1,
+       1,     3
 };
 
 
@@ -1236,109 +1244,127 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 43 "Praed_Lex.y" /* yacc.c:1646  */
+#line 46 "Praed_Lex.y" /* yacc.c:1646  */
     {printf("reducing formel to startsymbol\n");}
-#line 1242 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 1250 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 46 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing formel and formel to formel\n");}
-#line 1248 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 49 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing atom to formel\n");}
+#line 1256 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 47 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing atom to formel\n");}
-#line 1254 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 50 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing NOT formel to formel\n");}
+#line 1262 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 48 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing NOT formel to formel\n");}
-#line 1260 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 51 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing (formel) to formel\n");}
+#line 1268 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 49 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing (formel) to formel\n");}
-#line 1266 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 52 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing top to formel\n");}
+#line 1274 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 50 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing top to formel\n");}
-#line 1272 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 53 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing bottom to formel\n");}
+#line 1280 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 51 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing bottom to formel\n");}
-#line 1278 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 54 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing formel and formel to formel\n");}
+#line 1286 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 56 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing all variable formel to formel\n");}
-#line 1284 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 55 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing formel or formel to formel\n");}
+#line 1292 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 57 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing ex variable formel to formel\n");}
-#line 1290 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 56 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing formel -> formel to formel\n");}
+#line 1298 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 62 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reduced VARIABLE to term\n");}
-#line 1296 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 57 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing formel <-> formel to formel\n");}
+#line 1304 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 63 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reduced CONSTANT to term\n");}
-#line 1302 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 58 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing all variable formel to formel\n");}
+#line 1310 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 64 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing f(param) to term\n");}
-#line 1308 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 59 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing ex variable formel to formel\n");}
+#line 1316 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 67 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing R(param) to atom\n");}
-#line 1314 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 64 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reduced VARIABLE to term\n");}
+#line 1322 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 68 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing R() to atom");}
-#line 1320 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 65 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reduced CONSTANT to term\n");}
+#line 1328 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 69 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing R tp atom");}
-#line 1326 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 66 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing f(param) to term\n");}
+#line 1334 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 72 "Praed_Lex.y" /* yacc.c:1646  */
-    {printf("reducing term to param\n");}
-#line 1332 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 69 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing R(param) to atom\n");}
+#line 1340 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 73 "Praed_Lex.y" /* yacc.c:1646  */
+#line 70 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing R() to atom");}
+#line 1346 "Praed_Lex.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 19:
+#line 71 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing R tp atom");}
+#line 1352 "Praed_Lex.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 20:
+#line 74 "Praed_Lex.y" /* yacc.c:1646  */
+    {printf("reducing term to param\n");}
+#line 1358 "Praed_Lex.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 21:
+#line 75 "Praed_Lex.y" /* yacc.c:1646  */
     {printf("reducing (term,term) to param\n");}
-#line 1338 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 1364 "Praed_Lex.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1342 "Praed_Lex.tab.c" /* yacc.c:1646  */
+#line 1368 "Praed_Lex.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1566,7 +1592,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 74 "Praed_Lex.y" /* yacc.c:1906  */
+#line 76 "Praed_Lex.y" /* yacc.c:1906  */
 
 
 int yyerror(char* err)
