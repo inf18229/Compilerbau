@@ -1,16 +1,22 @@
 %{
     #include <stdio.h>
-    #include "Datatypes.h"
+    //#include "Datatypes.h"
     extern int yyerror(char* err);
     extern int yylex(void);
     extern FILE *yyin;
 %}
 
+%code requires{
+  #include "Datatypes.h"
+};
+
 %union {
     char* val;
-    struct* term;
-    struct* param;
-    struct* formel;
+
+    term_s* term; //term
+    param_s* param; //termlist,
+    atom_s* atom;
+    formel_s* formel;
 }
 %start stmtseq
 
@@ -86,5 +92,11 @@ void main(int argc, char* argv[])
       yyin = fopen( argv[0], "r" );
   else
     yyin = stdin;
+
 yyparse();
+
+term_s *term=createTerm("T",NULL);
+printf("Hier\n");
+printf("%s\n",term->varfunc);
+
 }
