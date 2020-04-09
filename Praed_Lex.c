@@ -845,7 +845,7 @@ YY_RULE_SETUP
 #line 60 "Praed_Lex.l"
 {
   printf("scanning VARIABLE %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext); //yytext+1
   return VARIABLE;
 }
 	YY_BREAK
@@ -854,7 +854,7 @@ YY_RULE_SETUP
 #line 65 "Praed_Lex.l"
 {
   printf("scanning CONSTANT %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext);
   return CONSTANT;
 }
 	YY_BREAK
@@ -863,7 +863,7 @@ YY_RULE_SETUP
 #line 70 "Praed_Lex.l"
 {
   printf("scanning FUNCSYMBOL %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext);
   return FUNCSYMBOL;
 }
 	YY_BREAK
@@ -872,7 +872,7 @@ YY_RULE_SETUP
 #line 75 "Praed_Lex.l"
 {
   printf("scanning PREDICATE %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext);
   return PREDICATE;
 }
 	YY_BREAK

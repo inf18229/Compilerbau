@@ -97,5 +97,31 @@ static term_s* createTerm(char* varfunc, param_s* t1)
   return term;
 }
 
+static formel_s* createFormulaATOM(unsigned int type, atom_s* atom){
+  formel_s* retformel = (formel_s*) malloc(sizeof(formel_s));
+  retformel->typ_s = type;
+  retformel->atom = atom;
+  return retformel;
+}
+
+static atom_s* createAtom(char* name, param_s* param){
+  atom_s* retatom = (atom_s*) malloc(sizeof(atom_s));
+  retatom->name = name;
+  retatom->myparam = param;
+  return retatom;
+}
+
+static param_s* createParam(term_s* term,param_s* param){
+  param_s* retparam;
+  if(param == NULL){
+    retparam = (param_s*) malloc(sizeof(param_s));
+    retparam->first=term;
+  }else{
+    retparam = param;
+    term->next = retparam->first;
+    retparam->first = term;
+  }
+    return retparam;
+}
 
 #endif

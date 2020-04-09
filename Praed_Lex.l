@@ -59,22 +59,22 @@ CONSTANT [c-d]
 }
 {VARIABLE}{INTEGER}* {
   printf("scanning VARIABLE %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext); //yytext+1
   return VARIABLE;
 }
 {CONSTANT}{INTEGER}* {
   printf("scanning CONSTANT %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext);
   return CONSTANT;
 }
 {FUNCSYMBOL}{INTEGER}* {
   printf("scanning FUNCSYMBOL %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext);
   return FUNCSYMBOL;
 }
 {PREDICATE}{INTEGER}* {
   printf("scanning PREDICATE %s\n",yytext);
-  yylval.val = yytext+1;
+  yylval.val = strdup(yytext);
   return PREDICATE;
 }
 
