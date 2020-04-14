@@ -54,7 +54,7 @@ struct formel_s{
   char* var; //Variable für ex und all Quantor
   formel_s* subqant; //formel für Ex und All Quantor
 
-  //int brackets; ???
+  int brackets;
 };
 
 
@@ -124,4 +124,41 @@ static param_s* createParam(term_s* term,param_s* param){
     return retparam;
 }
 
+static formel_s* createFormulaBRACK(formel_s* formel, int countBrackets)
+{
+    formel_s* retformel = (formel_s*) malloc(sizeof(formel_s));
+    retformel = formel;
+    retformel->brackets = countBrackets;  //was hab ich davon? Ich überschreibe ja dann jedesmal die Zahl der Klammern
+    return retformel;
+}
+
+static formel_s* createFormulaNOT(unsigned int type,  formel_s* subformel){
+    formel_s* retformel = (formel_s*) malloc(sizeof(formel_s));
+    retformel->typ_s = type;
+    retformel->subnot = subformel;
+    return retformel;
+}
+
+static formel_s* createFormulaBOOL(unsigned int type){
+      formel_s* retformel = (formel_s*) malloc(sizeof(formel_s));
+      retformel->typ_s = type;
+
+      return retformel;
+}
+static formel_s* createFormulaJUNKT(unsigned int type,  formel_s* leftsub, formel_s* rightsub){
+      formel_s* retformel = (formel_s*) malloc(sizeof(formel_s));
+      retformel->typ_s = type;
+
+      retformel->sublinks = leftsub;
+      retformel->subrechts = rightsub;
+      return retformel;
+}
+static formel_s* createFormulaQUANT(unsigned int type, formel_s* subformel, char* var){
+      formel_s* retformel = (formel_s*) malloc(sizeof(formel_s));
+      retformel->typ_s = type;
+
+      retformel->subqant = subformel;
+      retformel->var = var;
+      return retformel;
+   }
 #endif

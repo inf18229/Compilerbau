@@ -458,9 +458,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    52,    52,    55,    60,    61,    62,    63,    64,    65,
-      66,    67,    68,    69,    71,    75,    79,    83,    87,    91,
-      95,   100
+       0,    52,    52,    55,    60,    63,    66,    69,    72,    75,
+      78,    81,    84,    87,    91,    95,    99,   103,   107,   111,
+     115,   120
 };
 #endif
 
@@ -1275,139 +1275,159 @@ yyreduce:
 
   case 4:
 #line 60 "Praed_Lex.y"
-    {printf("reducing NOT formel to formel\n");}
-#line 1280 "Praed_Lex.tab.c"
+    {printf("reducing NOT formel to formel\n");
+        (yyval.formel) = createFormulaNOT(not,(yyvsp[0].formel));
+}
+#line 1282 "Praed_Lex.tab.c"
     break;
 
   case 5:
-#line 61 "Praed_Lex.y"
-    {printf("reducing (formel) to formel\n");}
-#line 1286 "Praed_Lex.tab.c"
+#line 63 "Praed_Lex.y"
+    {printf("reducing (formel) to formel\n");
+        (yyval.formel) = createFormulaBRACK((yyvsp[-1].formel), 1);
+}
+#line 1290 "Praed_Lex.tab.c"
     break;
 
   case 6:
-#line 62 "Praed_Lex.y"
-    {printf("reducing top to formel\n");}
-#line 1292 "Praed_Lex.tab.c"
-    break;
-
-  case 7:
-#line 63 "Praed_Lex.y"
-    {printf("reducing bottom to formel\n");}
+#line 66 "Praed_Lex.y"
+    {printf("reducing top to formel\n");
+        (yyval.formel) = createFormulaBOOL(top);
+}
 #line 1298 "Praed_Lex.tab.c"
     break;
 
+  case 7:
+#line 69 "Praed_Lex.y"
+    {printf("reducing bottom to formel\n");
+        (yyval.formel) = createFormulaBOOL(bottom);
+}
+#line 1306 "Praed_Lex.tab.c"
+    break;
+
   case 8:
-#line 64 "Praed_Lex.y"
-    {printf("reducing formel and formel to formel\n");}
-#line 1304 "Praed_Lex.tab.c"
+#line 72 "Praed_Lex.y"
+    {printf("reducing formel and formel to formel\n");
+        (yyval.formel) = createFormulaJUNKT(and,(yyvsp[-2].formel),(yyvsp[0].formel));
+}
+#line 1314 "Praed_Lex.tab.c"
     break;
 
   case 9:
-#line 65 "Praed_Lex.y"
-    {printf("reducing formel or formel to formel\n");}
-#line 1310 "Praed_Lex.tab.c"
-    break;
-
-  case 10:
-#line 66 "Praed_Lex.y"
-    {printf("reducing formel -> formel to formel\n");}
-#line 1316 "Praed_Lex.tab.c"
-    break;
-
-  case 11:
-#line 67 "Praed_Lex.y"
-    {printf("reducing formel <-> formel to formel\n");}
+#line 75 "Praed_Lex.y"
+    {printf("reducing formel or formel to formel\n");
+        (yyval.formel) = createFormulaJUNKT(or,(yyvsp[-2].formel),(yyvsp[0].formel));
+}
 #line 1322 "Praed_Lex.tab.c"
     break;
 
+  case 10:
+#line 78 "Praed_Lex.y"
+    {printf("reducing formel -> formel to formel\n");
+        (yyval.formel) = createFormulaJUNKT(implication,(yyvsp[-2].formel),(yyvsp[0].formel));
+}
+#line 1330 "Praed_Lex.tab.c"
+    break;
+
+  case 11:
+#line 81 "Praed_Lex.y"
+    {printf("reducing formel <-> formel to formel\n");
+        (yyval.formel) = createFormulaJUNKT(equ,(yyvsp[-2].formel),(yyvsp[0].formel));
+}
+#line 1338 "Praed_Lex.tab.c"
+    break;
+
   case 12:
-#line 68 "Praed_Lex.y"
-    {printf("reducing all variable formel to formel\n");}
-#line 1328 "Praed_Lex.tab.c"
+#line 84 "Praed_Lex.y"
+    {printf("reducing all variable formel to formel\n");
+        (yyval.formel) = createFormulaQUANT(all,(yyvsp[0].formel),(yyvsp[-1].val));
+}
+#line 1346 "Praed_Lex.tab.c"
     break;
 
   case 13:
-#line 69 "Praed_Lex.y"
-    {printf("reducing ex variable formel to formel\n");}
-#line 1334 "Praed_Lex.tab.c"
+#line 87 "Praed_Lex.y"
+    {printf("reducing ex variable formel to formel\n");
+        (yyval.formel) = createFormulaQUANT(ex,(yyvsp[0].formel),(yyvsp[-1].val));
+}
+#line 1354 "Praed_Lex.tab.c"
     break;
 
   case 14:
-#line 71 "Praed_Lex.y"
+#line 91 "Praed_Lex.y"
     {printf("reduced VARIABLE to term\n");
                (yyval.term)=createTerm((yyvsp[0].val),NULL);
                printf("Variable: %s\n",(yyval.term)->varfunc);
 }
-#line 1343 "Praed_Lex.tab.c"
+#line 1363 "Praed_Lex.tab.c"
     break;
 
   case 15:
-#line 75 "Praed_Lex.y"
+#line 95 "Praed_Lex.y"
     {printf("reduced CONSTANT to term\n");
                 (yyval.term)=createTerm((yyvsp[0].val),NULL);
                 printf("Constant: %s\n",(yyval.term)->varfunc);
 }
-#line 1352 "Praed_Lex.tab.c"
+#line 1372 "Praed_Lex.tab.c"
     break;
 
   case 16:
-#line 79 "Praed_Lex.y"
+#line 99 "Praed_Lex.y"
     {printf("reducing f(param) to term\n");
                                          (yyval.term)=createTerm((yyvsp[-3].val),(yyvsp[-1].param));
                                          printf("MyList First element: %s\n",(yyval.term)->myparam_s->first->varfunc);
 }
-#line 1361 "Praed_Lex.tab.c"
+#line 1381 "Praed_Lex.tab.c"
     break;
 
   case 17:
-#line 83 "Praed_Lex.y"
+#line 103 "Praed_Lex.y"
     {printf("reducing R(param) to atom\n");
                                         (yyval.atom)=createAtom((yyvsp[-3].val),(yyvsp[-1].param));
                                         printf("Atom: %s\n",(yyval.atom)->name);
 }
-#line 1370 "Praed_Lex.tab.c"
+#line 1390 "Praed_Lex.tab.c"
     break;
 
   case 18:
-#line 87 "Praed_Lex.y"
+#line 107 "Praed_Lex.y"
     {printf("reducing R() to atom\n");
                                   (yyval.atom)=createAtom((yyvsp[-2].val),NULL);
                                   printf("Atom: %s\n",(yyval.atom)->name);
   }
-#line 1379 "Praed_Lex.tab.c"
+#line 1399 "Praed_Lex.tab.c"
     break;
 
   case 19:
-#line 91 "Praed_Lex.y"
+#line 111 "Praed_Lex.y"
     {printf("reducing R tp atom\n");
                  (yyval.atom)=createAtom((yyvsp[0].val),NULL);
                  printf("Atom: %s\n",(yyval.atom)->name);
   }
-#line 1388 "Praed_Lex.tab.c"
+#line 1408 "Praed_Lex.tab.c"
     break;
 
   case 20:
-#line 95 "Praed_Lex.y"
+#line 115 "Praed_Lex.y"
     {printf("reducing term to param\n");//-->Wie in der Lösung termlist
               (yyval.param)=createParam((yyvsp[0].term), NULL);
               //printf("ParamList: %s\n",$<param>$->first->varfunc);
 
 }
-#line 1398 "Praed_Lex.tab.c"
+#line 1418 "Praed_Lex.tab.c"
     break;
 
   case 21:
-#line 100 "Praed_Lex.y"
+#line 120 "Praed_Lex.y"
     {printf("reducing (term,term) to param\n");
                         (yyval.param)=createParam((yyvsp[-2].term),(yyvsp[0].param));
                         printf("Parameter: %s,%s\n",(yyval.param)->first->varfunc,(yyval.param)->first->next->varfunc);
   }
-#line 1407 "Praed_Lex.tab.c"
+#line 1427 "Praed_Lex.tab.c"
     break;
 
 
-#line 1411 "Praed_Lex.tab.c"
+#line 1431 "Praed_Lex.tab.c"
 
       default: break;
     }
@@ -1639,7 +1659,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 104 "Praed_Lex.y"
+#line 124 "Praed_Lex.y"
 
 
 int yyerror(char* err)

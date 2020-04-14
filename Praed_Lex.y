@@ -57,16 +57,36 @@ formel: atom {printf("reducing atom to formel\n");
               printf("Formel-Typ: %d\n",$<formel>$->typ_s);
 
 }
-      | NOT formel {printf("reducing NOT formel to formel\n");}
-      | OPENPAR formel CLOSEPAR {printf("reducing (formel) to formel\n");}
-      | TOP {printf("reducing top to formel\n");}
-      | BOTTOM {printf("reducing bottom to formel\n");}
-      | formel AND formel {printf("reducing formel and formel to formel\n");}
-      | formel OR formel {printf("reducing formel or formel to formel\n");}
-      | formel IMPLIZIT formel {printf("reducing formel -> formel to formel\n");}
-      | formel EQUIVALENT formel {printf("reducing formel <-> formel to formel\n");}
-      | ALL VARIABLE formel {printf("reducing all variable formel to formel\n");}
-      | EX VARIABLE formel {printf("reducing ex variable formel to formel\n");}
+      | NOT formel {printf("reducing NOT formel to formel\n");
+        $<formel>$ = createFormulaNOT(not,$<formel>2);
+}
+      | OPENPAR formel CLOSEPAR {printf("reducing (formel) to formel\n");
+        $<formel>$ = createFormulaBRACK($<formel>2, 1);
+}
+      | TOP {printf("reducing top to formel\n");
+        $<formel>$ = createFormulaBOOL(top);
+}
+      | BOTTOM {printf("reducing bottom to formel\n");
+        $<formel>$ = createFormulaBOOL(bottom);
+}
+      | formel AND formel {printf("reducing formel and formel to formel\n");
+        $<formel>$ = createFormulaJUNKT(and,$<formel>1,$<formel>3);
+}
+      | formel OR formel {printf("reducing formel or formel to formel\n");
+        $<formel>$ = createFormulaJUNKT(or,$<formel>1,$<formel>3);
+}
+      | formel IMPLIZIT formel {printf("reducing formel -> formel to formel\n");
+        $<formel>$ = createFormulaJUNKT(implication,$<formel>1,$<formel>3);
+}
+      | formel EQUIVALENT formel {printf("reducing formel <-> formel to formel\n");
+        $<formel>$ = createFormulaJUNKT(equ,$<formel>1,$<formel>3);
+}
+      | ALL VARIABLE formel {printf("reducing all variable formel to formel\n");
+        $<formel>$ = createFormulaQUANT(all,$<formel>3,$<val>2);
+}
+      | EX VARIABLE formel {printf("reducing ex variable formel to formel\n");
+        $<formel>$ = createFormulaQUANT(ex,$<formel>3,$<val>2);
+}
 
 term: VARIABLE{printf("reduced VARIABLE to term\n");
                $<term>$=createTerm($<val>1,NULL);
