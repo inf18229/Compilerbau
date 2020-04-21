@@ -49,8 +49,19 @@
 
 %%
 
-stmtseq: formel {printf("reducing formel to startsymbol\n");}
+stmtseq:  nnf1 {printf("\nreducing formel to startsymbol\n");
+          printf("\n");
+          printf("==========Printing NNF1==========\n");
+          printFormula($<formel>1);
+}
+nnf1: formel {printf("Converting to NNF1\n");
+              printf("\n");
+              printf("==========Printing Formula==========\n");
+              printFormula($<formel>1);
+              transformNNF1($<formel>1);
+              $<formel>$=$<formel>1;
 
+}
 
 formel: atom {printf("reducing atom to formel\n");
               $<formel>$ = createFormulaATOM(atom, $<atom>1);
@@ -136,9 +147,6 @@ void main(int argc, char* argv[])
     yyin = stdin;
 
 yyparse();
-
-term_s *term=createTerm("T",NULL);
-printf("Hier\n");
-printf("%s\n",term->varfunc);
+printf("\n");
 
 }
