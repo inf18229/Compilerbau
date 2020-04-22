@@ -1,0 +1,172 @@
+scanning EX
+scanning VARIABLE x
+scanning OPENPAR 
+scanning PREDICATE P
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+scanning AND
+scanning PREDICATE Q22
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning COMMA 
+scanning VARIABLE y2
+reduced VARIABLE to term
+Variable: y2
+scanning CLOSEPAR
+reducing term to param
+reducing (term,term) to param
+Parameter: x,y2
+reducing R(param) to atom
+Atom: Q22
+reducing atom to formel
+Formel-Typ: 0
+scanning CLOSEPAR
+reducing formel and formel to formel
+reducing (formel) to formel
+reducing ex variable formel to formel
+scanning OR
+scanning PREDICATE Q
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: Q
+reducing atom to formel
+Formel-Typ: 0
+scanning EQUIVALENT
+reducing formel or formel to formel
+scanning NOT
+scanning PREDICATE P
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+reducing NOT formel to formel
+scanning IMPLIZIT
+scanning BOTTOM
+reducing bottom to formel
+reducing formel -> formel to formel
+reducing formel <-> formel to formel
+
+==========Printing Formula==========
+EQU
+  OR
+    EX x 
+      AND
+        P(x)
+        Q22(x,y2)
+    Q(x)
+  IMPL
+    NOT
+      P(x)
+    BOTTOM
+Converting to NNF1
+
+==========Printing NNF1==========
+OR
+  AND
+    OR
+      EX x 
+        AND
+          P(x)
+          Q22(x,y2)
+      Q(x)
+    OR
+      NOT
+        NOT
+          P(x)
+      BOTTOM
+  AND
+    NOT
+      OR
+        EX x 
+          AND
+            P(x)
+            Q22(x,y2)
+        Q(x)
+    NOT
+      OR
+        NOT
+          NOT
+            P(x)
+        BOTTOM
+Converting to NNF2
+
+==========Printing NNF2==========
+OR
+  AND
+    OR
+      EX x 
+        AND
+          P(x)
+          Q22(x,y2)
+      Q(x)
+    OR
+      NOT
+        NOT
+          P(x)
+      BOTTOM
+  AND
+    AND
+      ALL x 
+        OR
+          NOT
+            P(x)
+          NOT
+            Q22(x,y2)
+      NOT
+        Q(x)
+    AND
+      NOT
+        NOT
+          NOT
+            P(x)
+      NOT
+        BOTTOM
+Converting to NNF3
+
+==========Printing NNF3==========
+OR
+  AND
+    OR
+      EX x 
+        AND
+          P(x)
+          Q22(x,y2)
+      Q(x)
+    OR
+      P(x)
+      BOTTOM
+  AND
+    AND
+      ALL x 
+        OR
+          NOT
+            P(x)
+          NOT
+            Q22(x,y2)
+      NOT
+        Q(x)
+    AND
+      NOT
+        P(x)
+      TOP

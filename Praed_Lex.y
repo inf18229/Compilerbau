@@ -32,7 +32,7 @@
 %precedence BOTTOM
 %precedence EQUIVALENT
 %precedence IMPLIZIT
-%precedence OR
+%left OR        
 %precedence AND
 %precedence NOT
 %precedence CONSTANT
@@ -49,18 +49,38 @@
 
 %%
 
-stmtseq:  nnf1 {printf("\nreducing formel to startsymbol\n");
+stmtseq:  nnf3 {//printf("\nreducing formel to startsymbol\n");
           printf("\n");
-          printf("==========Printing NNF1==========\n");
+          printf("==========Printing NNF3==========\n");
           printFormula($<formel>1);
 }
-nnf1: formel {printf("Converting to NNF1\n");
+
+nnf3: nnf2 {
+              printf("\n");
+              printf("==========Printing NNF2==========\n");
+              printFormula($<formel>1);
+              printf("\nConverting to NNF3\n");
+              transformNNF3($<formel>1);
+              $<formel>$=$<formel>1;
+}
+
+nnf2: nnf1 {
+              printf("\n");
+              printf("==========Printing NNF1==========\n");
+              printFormula($<formel>1);
+              printf("\nConverting to NNF2\n");
+              transformNNF2($<formel>1);
+              $<formel>$=$<formel>1;
+}
+
+
+nnf1: formel {
               printf("\n");
               printf("==========Printing Formula==========\n");
               printFormula($<formel>1);
+              printf("\nConverting to NNF1\n");
               transformNNF1($<formel>1);
               $<formel>$=$<formel>1;
-
 }
 
 formel: atom {printf("reducing atom to formel\n");
@@ -137,16 +157,15 @@ param: term  {printf("reducing term to param\n");//-->Wie in der Lösung termlis
 int yyerror(char* err)
 {
   printf("Error: %s\n",err);
+  return 0;
 }
-void main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]){
   ++argv, --argc;
   if ( argc > 0 )
       yyin = fopen( argv[0], "r" );
   else
     yyin = stdin;
-
-yyparse();
-printf("\n");
-
+  yyparse();
+  printf("\n");
+  return 0;
 }

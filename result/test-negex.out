@@ -1,0 +1,39 @@
+scanning NOT
+scanning EX
+scanning VARIABLE x
+scanning PREDICATE P
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+reducing ex variable formel to formel
+reducing NOT formel to formel
+
+==========Printing Formula==========
+NOT
+  EX x 
+    P(x)
+Converting to NNF1
+
+==========Printing NNF1==========
+NOT
+  EX x 
+    P(x)
+Converting to NNF2
+
+==========Printing NNF2==========
+ALL x 
+  NOT
+    P(x)
+Converting to NNF3
+
+==========Printing NNF3==========
+ALL x 
+  NOT
+    P(x)

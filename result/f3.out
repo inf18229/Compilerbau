@@ -1,0 +1,93 @@
+scanning TOP
+reducing top to formel
+scanning AND
+scanning ALL
+scanning VARIABLE x
+scanning TOP
+reducing top to formel
+reducing all variable formel to formel
+scanning OR
+reducing formel and formel to formel
+scanning PREDICATE Q
+scanning OPENPAR 
+scanning FUNCSYMBOL f
+scanning OPENPAR 
+scanning FUNCSYMBOL g
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning COMMA 
+scanning FUNCSYMBOL h
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning COMMA 
+scanning VARIABLE y
+reduced VARIABLE to term
+Variable: y
+scanning COMMA 
+scanning VARIABLE z
+reduced VARIABLE to term
+Variable: z
+scanning CLOSEPAR
+reducing term to param
+reducing (term,term) to param
+Parameter: y,z
+reducing (term,term) to param
+Parameter: x,y
+reducing f(param) to term
+MyList First element: x
+scanning CLOSEPAR
+reducing term to param
+reducing (term,term) to param
+Parameter: x,h
+reducing f(param) to term
+MyList First element: x
+scanning CLOSEPAR
+reducing term to param
+reducing f(param) to term
+MyList First element: g
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: Q
+reducing atom to formel
+Formel-Typ: 0
+reducing formel or formel to formel
+
+==========Printing Formula==========
+OR
+  AND
+    TOP
+    ALL x 
+      TOP
+  Q(f(g(x,h(x,y,z))))
+Converting to NNF1
+
+==========Printing NNF1==========
+OR
+  AND
+    TOP
+    ALL x 
+      TOP
+  Q(f(g(x,h(x,y,z))))
+Converting to NNF2
+
+==========Printing NNF2==========
+OR
+  AND
+    TOP
+    ALL x 
+      TOP
+  Q(f(g(x,h(x,y,z))))
+Converting to NNF3
+
+==========Printing NNF3==========
+OR
+  AND
+    TOP
+    ALL x 
+      TOP
+  Q(f(g(x,h(x,y,z))))

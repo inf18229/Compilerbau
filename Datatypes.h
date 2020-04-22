@@ -285,16 +285,20 @@ static void transformNNF1(formel_s* f){
          case atom:
             break;// do nothing
          case and:
-            transformNNF1(f->sublinks);transformNNF1(f->subrechts);break;
+            transformNNF1(f->sublinks);
+            transformNNF1(f->subrechts);break;
          case or:
-            transformNNF1(f->sublinks);transformNNF1(f->subrechts);break;
+            transformNNF1(f->sublinks);
+            transformNNF1(f->subrechts);break;
          case not:
-            transformNNF1(f->subnot); break;
+            transformNNF1(f->subnot);
+            break;
          case implication:
             tmp1 = createFormulaNOT(not, f->sublinks);
             f->typ_s = or;
             f->sublinks = tmp1;
-            transformNNF1(f->sublinks);transformNNF1(f->subrechts); break;
+            transformNNF1(f->sublinks);
+            transformNNF1(f->subrechts); break;
             break;
 
          case equ:
@@ -309,17 +313,142 @@ static void transformNNF1(formel_s* f){
             f->subrechts->brackets = 1;
             f->subrechts->sublinks = tmp3;
             f->subrechts->subrechts = tmp2;
-            transformNNF1(f->sublinks);transformNNF1(f->subrechts);
+            transformNNF1(f->sublinks);
+            transformNNF1(f->subrechts);
             break;
 
-         case all: transformNNF1(f->subqant); break;
-         case ex: transformNNF1(f->subqant);break;
-         case top:break;
-         case bottom:break;
+         case all: transformNNF1(f->subqant);
+          break;
+         case ex: transformNNF1(f->subqant);
+          break;
+         case top:
+          break;
+         case bottom:
+          break;
          default: printf("ERROR in transformNNF");break;
       }
-
-
    }
+
+static void transformNNF2(formel_s* f){
+  formel_s* tmp1;
+  formel_s* tmp2;
+  formel_s* tmp3;
+  switch(f->typ_s){
+     case atom:
+        break;    // do nothing
+     case and:
+        transformNNF2(f->sublinks);
+        transformNNF2(f->subrechts);
+        break;
+     case or:
+        transformNNF2(f->sublinks);
+        transformNNF2(f->subrechts);
+        break;
+     case not:
+        switch(f->subnot->typ_s){
+          case all:
+            tmp1 = createFormulaNOT(not, f->subnot->subqant);
+            f->typ_s = ex;
+            f->var = f->subnot->var;
+            f->subqant = tmp1;
+            transformNNF2(f->subqant);
+            break;
+          case ex:
+            tmp1 = createFormulaNOT(not, f->subnot->subqant);
+            f->typ_s = all;
+            f->var = f->subnot->var;
+            f->subqant = tmp1;
+            transformNNF2(f->subqant);
+            break;
+          case and:
+            tmp1 = createFormulaNOT(not, f->subnot->sublinks);
+            tmp2 = createFormulaNOT(not, f->subnot->subrechts);
+            //tmp3 = createFormulaJUNKT(or, tmp1, tmp2);
+            f->typ_s=or;
+            f->sublinks = tmp1;
+            f->subrechts = tmp2;
+            transformNNF2(f->sublinks);
+            transformNNF2(f->subrechts);
+            break;
+          case or:
+            tmp1 = createFormulaNOT(not, f->subnot->sublinks);
+            tmp2 = createFormulaNOT(not, f->subnot->subrechts);
+            //tmp3 = createFormulaJUNKT(or, tmp1, tmp2);
+            f->typ_s=and;
+            f->sublinks = tmp1;
+            f->subrechts = tmp2;
+            transformNNF2(f->sublinks);
+            transformNNF2(f->subrechts);
+            break;
+          default: break;
+        }
+        transformNNF2(f->subnot);
+        break;
+
+
+     case all:
+      transformNNF2(f->subqant);
+      break;
+     case ex:
+      transformNNF2(f->subqant);
+      break;
+     case top:
+      break;
+     case bottom:
+      break;
+     default: printf("ERROR in transformNNF2\n");break;
+  }
+}
+
+
+static void transformNNF3(formel_s* f){
+  formel_s* tmp1;
+      switch(f->typ_s){
+      case atom:
+        break;
+      case and:
+        transformNNF3(f->sublinks);
+        transformNNF3(f->subrechts);
+        break;
+      case or:
+        transformNNF3(f->sublinks);
+        transformNNF3(f->subrechts);
+        break;
+      case not:
+        switch(f->subnot->typ_s){
+          case not:
+            tmp1 = (formel_s*) (formel_s*) malloc(sizeof(formel_s));
+            tmp1 = f->subnot->subnot;
+            *(f) = *(tmp1);
+            transformNNF3(f);
+            break;
+         case top:
+            f->typ_s = bottom;
+            break;
+         case bottom:
+            f->typ_s = top;
+            break;
+         default:
+            transformNNF3(f->subnot);
+         break;
+       }
+       break;
+      case all:
+        transformNNF3(f->subqant);
+        break;
+      case ex:
+        transformNNF3(f->subqant);
+        break;
+      case top:
+        break;
+      case bottom:
+        break;
+      default:
+        printf("ERROR in transformNNF3\n");
+        break;
+   }
+}
+
+
 
 #endif

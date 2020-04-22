@@ -1,0 +1,151 @@
+scanning OPENPAR 
+scanning ALL
+scanning VARIABLE x
+scanning PREDICATE P
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+reducing all variable formel to formel
+scanning IMPLIZIT
+scanning EX
+scanning VARIABLE x
+scanning PREDICATE P
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+reducing ex variable formel to formel
+scanning CLOSEPAR
+reducing formel -> formel to formel
+reducing (formel) to formel
+scanning AND
+scanning OPENPAR 
+scanning PREDICATE P
+scanning OPENPAR 
+scanning CONSTANT c
+reduced CONSTANT to term
+Constant: c
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+scanning OR
+scanning PREDICATE P
+scanning OPENPAR 
+scanning FUNCSYMBOL f
+scanning OPENPAR 
+scanning CONSTANT c
+reduced CONSTANT to term
+Constant: c
+scanning CLOSEPAR
+reducing term to param
+reducing f(param) to term
+MyList First element: c
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+scanning OR
+reducing formel or formel to formel
+scanning PREDICATE P
+scanning OPENPAR 
+scanning FUNCSYMBOL f
+scanning OPENPAR 
+scanning FUNCSYMBOL f
+scanning OPENPAR 
+scanning CONSTANT c
+reduced CONSTANT to term
+Constant: c
+scanning CLOSEPAR
+reducing term to param
+reducing f(param) to term
+MyList First element: c
+scanning CLOSEPAR
+reducing term to param
+reducing f(param) to term
+MyList First element: f
+scanning CLOSEPAR
+reducing term to param
+reducing R(param) to atom
+Atom: P
+reducing atom to formel
+Formel-Typ: 0
+scanning CLOSEPAR
+reducing formel or formel to formel
+reducing (formel) to formel
+reducing formel and formel to formel
+
+==========Printing Formula==========
+AND
+  IMPL
+    ALL x 
+      P(x)
+    EX x 
+      P(x)
+  OR
+    OR
+      P(c)
+      P(f(c))
+    P(f(f(c)))
+Converting to NNF1
+
+==========Printing NNF1==========
+AND
+  OR
+    NOT
+      ALL x 
+        P(x)
+    EX x 
+      P(x)
+  OR
+    OR
+      P(c)
+      P(f(c))
+    P(f(f(c)))
+Converting to NNF2
+
+==========Printing NNF2==========
+AND
+  OR
+    EX x 
+      NOT
+        P(x)
+    EX x 
+      P(x)
+  OR
+    OR
+      P(c)
+      P(f(c))
+    P(f(f(c)))
+Converting to NNF3
+
+==========Printing NNF3==========
+AND
+  OR
+    EX x 
+      NOT
+        P(x)
+    EX x 
+      P(x)
+  OR
+    OR
+      P(c)
+      P(f(c))
+    P(f(f(c)))

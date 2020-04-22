@@ -1,0 +1,55 @@
+scanning PREDICATE X
+scanning AND
+reducing R tp atom
+Atom: X
+reducing atom to formel
+Formel-Typ: 0
+scanning PREDICATE Z
+scanning IMPLIZIT
+reducing R tp atom
+Atom: Z
+reducing atom to formel
+Formel-Typ: 0
+reducing formel and formel to formel
+scanning PREDICATE Y
+reducing R tp atom
+Atom: Y
+reducing atom to formel
+Formel-Typ: 0
+reducing formel -> formel to formel
+
+==========Printing Formula==========
+IMPL
+  AND
+    X
+    Z
+  Y
+Converting to NNF1
+
+==========Printing NNF1==========
+OR
+  NOT
+    AND
+      X
+      Z
+  Y
+Converting to NNF2
+
+==========Printing NNF2==========
+OR
+  OR
+    NOT
+      X
+    NOT
+      Z
+  Y
+Converting to NNF3
+
+==========Printing NNF3==========
+OR
+  OR
+    NOT
+      X
+    NOT
+      Z
+  Y

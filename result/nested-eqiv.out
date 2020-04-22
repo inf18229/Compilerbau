@@ -1,0 +1,22 @@
+[scanning PREDICATE C
+[scanning PREDICATE D
+reducing R tp atom
+Atom: C
+reducing atom to formel
+Formel-Typ: 0
+
+==========Printing Formula==========
+C
+Converting to NNF1
+
+==========Printing NNF1==========
+C
+Converting to NNF2
+
+==========Printing NNF2==========
+C
+Converting to NNF3
+
+==========Printing NNF3==========
+CError: syntax error
+

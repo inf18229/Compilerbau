@@ -1,0 +1,115 @@
+scanning ALL
+scanning VARIABLE x
+scanning ALL
+scanning VARIABLE y
+scanning ALL
+scanning VARIABLE z
+scanning OPENPAR 
+scanning PREDICATE R
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning COMMA 
+scanning VARIABLE y
+reduced VARIABLE to term
+Variable: y
+scanning CLOSEPAR
+reducing term to param
+reducing (term,term) to param
+Parameter: x,y
+reducing R(param) to atom
+Atom: R
+reducing atom to formel
+Formel-Typ: 0
+scanning AND
+scanning PREDICATE R
+scanning OPENPAR 
+scanning VARIABLE y
+reduced VARIABLE to term
+Variable: y
+scanning COMMA 
+scanning VARIABLE z
+reduced VARIABLE to term
+Variable: z
+scanning CLOSEPAR
+reducing term to param
+reducing (term,term) to param
+Parameter: y,z
+reducing R(param) to atom
+Atom: R
+reducing atom to formel
+Formel-Typ: 0
+scanning IMPLIZIT
+reducing formel and formel to formel
+scanning PREDICATE R
+scanning OPENPAR 
+scanning VARIABLE x
+reduced VARIABLE to term
+Variable: x
+scanning COMMA 
+scanning VARIABLE z
+reduced VARIABLE to term
+Variable: z
+scanning CLOSEPAR
+reducing term to param
+reducing (term,term) to param
+Parameter: x,z
+reducing R(param) to atom
+Atom: R
+reducing atom to formel
+Formel-Typ: 0
+scanning CLOSEPAR
+reducing formel -> formel to formel
+reducing (formel) to formel
+reducing all variable formel to formel
+reducing all variable formel to formel
+reducing all variable formel to formel
+
+==========Printing Formula==========
+ALL x 
+  ALL y 
+    ALL z 
+      IMPL
+        AND
+          R(x,y)
+          R(y,z)
+        R(x,z)
+Converting to NNF1
+
+==========Printing NNF1==========
+ALL x 
+  ALL y 
+    ALL z 
+      OR
+        NOT
+          AND
+            R(x,y)
+            R(y,z)
+        R(x,z)
+Converting to NNF2
+
+==========Printing NNF2==========
+ALL x 
+  ALL y 
+    ALL z 
+      OR
+        OR
+          NOT
+            R(x,y)
+          NOT
+            R(y,z)
+        R(x,z)
+Converting to NNF3
+
+==========Printing NNF3==========
+ALL x 
+  ALL y 
+    ALL z 
+      OR
+        OR
+          NOT
+            R(x,y)
+          NOT
+            R(y,z)
+        R(x,z)
