@@ -79,6 +79,7 @@ EQU
     NOT
       P(x)
     BOTTOM
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -109,6 +110,7 @@ OR
           NOT
             P(x)
         BOTTOM
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -142,6 +144,7 @@ OR
             P(x)
       NOT
         BOTTOM
+
 Converting to NNF3
 
 ==========Printing NNF3==========

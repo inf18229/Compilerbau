@@ -104,6 +104,7 @@ AND
       P(c)
       P(f(c))
     P(f(f(c)))
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -119,6 +120,7 @@ AND
       P(c)
       P(f(c))
     P(f(f(c)))
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -134,6 +136,7 @@ AND
       P(c)
       P(f(c))
     P(f(f(c)))
+
 Converting to NNF3
 
 ==========Printing NNF3==========

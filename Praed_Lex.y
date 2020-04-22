@@ -143,7 +143,7 @@ atom: PREDICATE OPENPAR param CLOSEPAR {printf("reducing R(param) to atom\n");
                  $<atom>$=createAtom($<val>1,NULL);
                  printf("Atom: %s\n",$<atom>$->name);
   }
-param: term  {printf("reducing term to param\n");//-->Wie in der Lösung termlist
+param: term  {printf("reducing term to param\n");
               $<param>$=createParam($<term>1, NULL);
               //printf("ParamList: %s\n",$<param>$->first->varfunc);
 

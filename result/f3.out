@@ -64,6 +64,7 @@ OR
     ALL x 
       TOP
   Q(f(g(x,h(x,y,z))))
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -73,6 +74,7 @@ OR
     ALL x 
       TOP
   Q(f(g(x,h(x,y,z))))
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -82,6 +84,7 @@ OR
     ALL x 
       TOP
   Q(f(g(x,h(x,y,z))))
+
 Converting to NNF3
 
 ==========Printing NNF3==========
