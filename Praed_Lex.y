@@ -32,7 +32,7 @@
 %precedence BOTTOM
 %precedence EQUIVALENT
 %precedence IMPLIZIT
-%left OR        
+%left OR
 %precedence AND
 %precedence NOT
 %precedence CONSTANT
@@ -59,7 +59,7 @@ nnf3: nnf2 {
               printf("\n");
               printf("==========Printing NNF2==========\n");
               printFormula($<formel>1);
-              printf("\nConverting to NNF3\n");
+              printf("\n\nConverting to NNF3\n");
               transformNNF3($<formel>1);
               $<formel>$=$<formel>1;
 }
@@ -68,7 +68,7 @@ nnf2: nnf1 {
               printf("\n");
               printf("==========Printing NNF1==========\n");
               printFormula($<formel>1);
-              printf("\nConverting to NNF2\n");
+              printf("\n\nConverting to NNF2\n");
               transformNNF2($<formel>1);
               $<formel>$=$<formel>1;
 }
@@ -78,7 +78,7 @@ nnf1: formel {
               printf("\n");
               printf("==========Printing Formula==========\n");
               printFormula($<formel>1);
-              printf("\nConverting to NNF1\n");
+              printf("\n\nConverting to NNF1\n");
               transformNNF1($<formel>1);
               $<formel>$=$<formel>1;
 }

@@ -1368,7 +1368,7 @@ yyreduce:
               printf("\n");
               printf("==========Printing NNF2==========\n");
               printFormula((yyvsp[0].formel));
-              printf("\nConverting to NNF3\n");
+              printf("\n\nConverting to NNF3\n");
               transformNNF3((yyvsp[0].formel));
               (yyval.formel)=(yyvsp[0].formel);
 }
@@ -1381,7 +1381,7 @@ yyreduce:
               printf("\n");
               printf("==========Printing NNF1==========\n");
               printFormula((yyvsp[0].formel));
-              printf("\nConverting to NNF2\n");
+              printf("\n\nConverting to NNF2\n");
               transformNNF2((yyvsp[0].formel));
               (yyval.formel)=(yyvsp[0].formel);
 }
@@ -1394,7 +1394,7 @@ yyreduce:
               printf("\n");
               printf("==========Printing Formula==========\n");
               printFormula((yyvsp[0].formel));
-              printf("\nConverting to NNF1\n");
+              printf("\n\nConverting to NNF1\n");
               transformNNF1((yyvsp[0].formel));
               (yyval.formel)=(yyvsp[0].formel);
 }
