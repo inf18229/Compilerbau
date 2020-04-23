@@ -6,5 +6,5 @@ gcc -c -o Praed_Lex.o Praed_Lex.c
 gcc -c -o Praed_Lex.tab.o Praed_Lex.tab.c
 gcc Praed_Lex.o Praed_Lex.tab.o -o Parser
 echo Licensed by Students
-echo © Florian Schiffel, Michael Sauer, Stefan Maier
+echo © Florian Schiffel, Michael Saur, Stefan Maier
 echo @DHBW Stuttgart
