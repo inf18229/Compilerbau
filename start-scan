@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bison -d Praed_Lex.y
+bison -d Praed_Lex.y --warnings=none
 flex -t Praed_Lex.l>Praed_Lex.c
 gcc -c -o Praed_Lex.o Praed_Lex.c
 gcc -c -o Praed_Lex.tab.o Praed_Lex.tab.c
