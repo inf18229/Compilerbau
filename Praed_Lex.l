@@ -10,7 +10,7 @@ CONSTANT [c-d]
 
 %%
 "," {
-  printf("scanning COMMA \n"); //-->Semantischer Wert ist steht in yytext
+  printf("scanning COMMA \n");
   return COMMA;
 }
 \( {
@@ -82,11 +82,9 @@ CONSTANT [c-d]
 
 \n {
  /*SKIP leerzeichen und Enter*/
- //printf("\n");
  }
 " " {
  /*SKIP leerzeichen und Enter*/
- //printf("LEERZEICHEN erkannt! ");
  }
 
 %%

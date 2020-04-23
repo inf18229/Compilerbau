@@ -75,6 +75,7 @@ ALL x
           R(x,y)
           R(y,z)
         R(x,z)
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -87,6 +88,7 @@ ALL x
             R(x,y)
             R(y,z)
         R(x,z)
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -100,6 +102,7 @@ ALL x
           NOT
             R(y,z)
         R(x,z)
+
 Converting to NNF3
 
 ==========Printing NNF3==========

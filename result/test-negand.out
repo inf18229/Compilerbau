@@ -33,6 +33,7 @@ NOT
   AND
     P(x)
     Q(x)
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -40,6 +41,7 @@ NOT
   AND
     P(x)
     Q(x)
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -48,6 +50,7 @@ OR
     P(x)
   NOT
     Q(x)
+
 Converting to NNF3
 
 ==========Printing NNF3==========

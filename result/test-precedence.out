@@ -24,6 +24,7 @@ IMPL
     X
     Z
   Y
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -33,6 +34,7 @@ OR
       X
       Z
   Y
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -43,6 +45,7 @@ OR
     NOT
       Z
   Y
+
 Converting to NNF3
 
 ==========Printing NNF3==========

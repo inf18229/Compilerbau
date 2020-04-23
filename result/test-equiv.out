@@ -15,6 +15,7 @@ reducing formel <-> formel to formel
 EQU
   X
   Y
+
 Converting to NNF1
 
 ==========Printing NNF1==========
@@ -27,6 +28,7 @@ OR
       X
     NOT
       Y
+
 Converting to NNF2
 
 ==========Printing NNF2==========
@@ -39,6 +41,7 @@ OR
       X
     NOT
       Y
+
 Converting to NNF3
 
 ==========Printing NNF3==========

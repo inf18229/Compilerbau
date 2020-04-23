@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.5.3.  */
+/* A Bison parser, made by GNU Bison 3.5.4.  */
 
 /* Bison interface for Yacc-like parsers in C
 
@@ -44,9 +44,9 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 9 "Praed_Lex.y"
+#line 8 "Praed_Lex.y"
 
-  #include "Datatypes.h"
+  #include "Datatypes.h"  //all Function and Data Definitions are defined here
 
 #line 52 "Praed_Lex.tab.h"
 
@@ -78,16 +78,15 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 13 "Praed_Lex.y"
+#line 12 "Praed_Lex.y"
 
     char* val;
-
-    term_s* term; //term
-    param_s* param; //termlist,
+    term_s* term;
+    param_s* param;
     atom_s* atom;
     formel_s* formel;
 
-#line 91 "Praed_Lex.tab.h"
+#line 90 "Praed_Lex.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

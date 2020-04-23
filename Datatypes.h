@@ -3,16 +3,19 @@
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
+/*===================Create DATATYPES_H====================*/
 typedef struct term_s term_s;
 typedef struct param_s param_s;
 typedef struct atom_s atom_s;
 typedef struct formel_s formel_s;
+/*========================================================*/
 
+/*================Function forward definition==============*/
 static void printTermList(param_s* tl );
 static void printFormula(formel_s* f);
 static void printTerm(term_s* t);
 static void printAtom(atom_s* a);
-
+/*========================================================*/
 
 enum typ{
   atom,        //0
@@ -45,12 +48,11 @@ struct atom_s{
 		atom_s* next;
 	};
 
-//formula
+//formel
 struct formel_s{
   enum typ typ_s;
 
   atom_s* atom;
-  //param_s* param;
 
   formel_s* subnot; //formel für ~(Formel)
   formel_s* sublinks; //formel links für -> &,...
@@ -62,37 +64,7 @@ struct formel_s{
   int brackets;
 };
 
-
-
-//Verkettete liste funktionen returned termliste
-
-static param_s* addElement(param_s* list, term_s* term)
-{
-  term->next=list->first;
-  list->first=term;
-  return list;
-
-}
-
-/*
-static void deleteElement(param_s* list, param_s* param)
-{
-  param_s* temp = list;
-  if(param->first->varfunc == temp->first->varfunc){
-    //fist addElement
-    temp = temp->next;
-    return;
-  }
-  while(temp->next != NULL){
-    if(param->first->varfunc == temp->first->varfunc){
-      temp = temp->next;
-      return;
-    }
-    temp = temp->next;
-  }
-  return;
-}
-*/
+/*===================Definition Datatype functions====================*/
 static term_s* createTerm(char* varfunc, param_s* t1)
 {
   term_s* term=(term_s*) malloc(sizeof(term_s));
@@ -166,7 +138,9 @@ static formel_s* createFormulaQUANT(unsigned int type, formel_s* subformel, char
       retformel->var = var;
       return retformel;
    }
+/*========================================================*/
 
+/*===================Print Datatype Function====================*/
 static void printAtom(atom_s* a){
   printf("%s",a->name);
   if(a->myparam == NULL){}
@@ -277,6 +251,10 @@ static void printFormula(formel_s* f){
   }
 }
 
+/*========================================================*/
+
+
+/*===================Transform to NNF Functions====================*/
 static void transformNNF1(formel_s* f){
       formel_s* tmp1;
       formel_s* tmp2;
@@ -325,14 +303,14 @@ static void transformNNF1(formel_s* f){
           break;
          case bottom:
           break;
-         default: printf("ERROR in transformNNF");break;
+         default: printf("ERROR in transformNNF");
+          break;
       }
    }
 
 static void transformNNF2(formel_s* f){
   formel_s* tmp1;
   formel_s* tmp2;
-  formel_s* tmp3;
   switch(f->typ_s){
      case atom:
         break;    // do nothing
@@ -363,7 +341,6 @@ static void transformNNF2(formel_s* f){
           case and:
             tmp1 = createFormulaNOT(not, f->subnot->sublinks);
             tmp2 = createFormulaNOT(not, f->subnot->subrechts);
-            //tmp3 = createFormulaJUNKT(or, tmp1, tmp2);
             f->typ_s=or;
             f->sublinks = tmp1;
             f->subrechts = tmp2;
@@ -373,7 +350,6 @@ static void transformNNF2(formel_s* f){
           case or:
             tmp1 = createFormulaNOT(not, f->subnot->sublinks);
             tmp2 = createFormulaNOT(not, f->subnot->subrechts);
-            //tmp3 = createFormulaJUNKT(or, tmp1, tmp2);
             f->typ_s=and;
             f->sublinks = tmp1;
             f->subrechts = tmp2;
@@ -448,7 +424,6 @@ static void transformNNF3(formel_s* f){
         break;
    }
 }
-
-
+/*========================================================*/
 
 #endif

@@ -1,23 +1,2 @@
-[scanning PREDICATE D
-reducing R tp atom
-Atom: D
-reducing atom to formel
-Formel-Typ: 0
+Error: syntax error
 
-==========Printing Formula==========
-D
-
-Converting to NNF1
-
-==========Printing NNF1==========
-D
-
-Converting to NNF2
-
-==========Printing NNF2==========
-D
-
-Converting to NNF3
-
-==========Printing NNF3==========
-D

@@ -19,18 +19,21 @@ reducing NOT formel to formel
 NOT
   ALL x 
     P(x)
+
 Converting to NNF1
 
 ==========Printing NNF1==========
 NOT
   ALL x 
     P(x)
+
 Converting to NNF2
 
 ==========Printing NNF2==========
 EX x 
   NOT
     P(x)
+
 Converting to NNF3
 
 ==========Printing NNF3==========
